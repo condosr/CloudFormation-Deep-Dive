@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  myVPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: 'false'
+      EnableDnsHostnames: 'false'
+      InstanceTenancy: dedicated
+      Tags:
+        - Key: foo
+          Value: bar
+Outputs:
+  VPCID:
+    value: !Ref myVPC
+    Description: the ID of my vpc
+  VPCCIDR:
+    Value: !GetAtt myVPC.CidrBlock
+    Description: the CIDR block of the vpc
